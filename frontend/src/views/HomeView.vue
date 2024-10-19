@@ -88,6 +88,7 @@ watch(textToSummarize, verifySummarizeTextLength);
         <textarea
           ref="summarizedTextArea"
           name="summarized_text"
+          style="outline: none;"
           readonly
           placeholder="Summarized text will appear here"
         ></textarea>

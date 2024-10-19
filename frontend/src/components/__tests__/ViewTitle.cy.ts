@@ -30,18 +30,20 @@ describe('ViewTitle', () => {
         plugins: [i18n],
       },
     });
+
+    cy.get('h1').as('viewTitle');
   })
 
   it('renders the translated text properly in Portuguese', () => {
     // ASSERT
-    cy.get('h1').should('contain.text', messages.pt.home.header);
+    cy.get('@viewTitle').should('contain.text', messages.pt.home.header);
   });
 
   it('renders the translated text properly in English', () => {
     // ARRANGE
     i18n.global.locale = 'en';
     // ASSERT
-    cy.get('h1').should('contain.text', messages.en.home.header);
+    cy.get('@viewTitle').should('contain.text', messages.en.home.header);
   });
 
 });

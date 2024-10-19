@@ -30,18 +30,20 @@ describe('WelcomeText', () => {
         plugins: [i18n],
       },
     });
+
+    cy.get('p').as('welcomeText');
   })
 
   it('renders the translated text properly in Portuguese', () => {
     // ASSERT
-    cy.get('p').should('contain.text', messages.pt.home.welcome);
+    cy.get('@welcomeText').should('contain.text', messages.pt.home.welcome);
   });
 
   it('renders the translated text properly in English', () => {
     // ARRANGE
     i18n.global.locale = 'en';
     // ASSERT
-    cy.get('p').should('contain.text', messages.en.home.welcome);
+    cy.get('@welcomeText').should('contain.text', messages.en.home.welcome);
   });
 
 });

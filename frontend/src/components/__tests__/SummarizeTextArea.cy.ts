@@ -13,11 +13,13 @@ describe('SummarizeTextArea', () => {
 
   beforeEach(() => {
     mountComponent({ modelValue: '' });
+
+    cy.get('textarea').as('summarizeTextArea');
   });
 
   it('emits update:modelValue event on input for values < 200 characters', () => {
     const shortText = 'This is a short text less than 200 characters.';
-    cy.get('textarea')
+    cy.get('@summarizeTextArea')
       .type(shortText);
 
     cy.on('@update:modelValue', () => {
@@ -27,7 +29,7 @@ describe('SummarizeTextArea', () => {
 
   it('emits update:modelValue event on input for values > 200 and < 5000 characters', () => {
     const validText = 'This is a valid text with more than 200 characters but less than 5000 characters';
-    cy.get('textarea')
+    cy.get('@summarizeTextArea')
       .type(validText);
 
     cy.on('@update:modelValue', () => {

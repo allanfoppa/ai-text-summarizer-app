@@ -30,18 +30,20 @@ describe('InfoText', () => {
         plugins: [i18n],
       },
     });
+
+    cy.get('p').as('infoText');
   })
 
   it('renders the translated text properly in Portuguese', () => {
     // ASSERT
-    cy.get('p').should('contain.text', messages.pt.home.info);
+    cy.get('@infoText').should('contain.text', messages.pt.home.info);
   });
 
   it('renders the translated text properly in English', () => {
     // ARRANGE
     i18n.global.locale = 'en';
     // ASSERT
-    cy.get('p').should('contain.text', messages.en.home.info);
+    cy.get('@infoText').should('contain.text', messages.en.home.info);
   });
 
 });
