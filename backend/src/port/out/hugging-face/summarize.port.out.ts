@@ -38,7 +38,7 @@ export class HuggingFacePortOut {
     }
     catch (error) {
       console.log(error);
+      throw new InternalServerErrorException(error.message);
     }
-
   }
 }
