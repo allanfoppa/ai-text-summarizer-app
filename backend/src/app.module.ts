@@ -3,6 +3,7 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { SummarizeModule } from './summarize/summarize.module';
+import { ResponseHelper } from './commom/helpers/response.helper';
 
 @Module({
   imports: [
@@ -13,6 +14,9 @@ import { SummarizeModule } from './summarize/summarize.module';
     SummarizeModule
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    AppService,
+    ResponseHelper,
+  ],
 })
 export class AppModule {}
