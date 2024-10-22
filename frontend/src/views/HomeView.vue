@@ -32,7 +32,7 @@ const submitData = () => {
   myHeaders.append("Content-Type", "application/json");
 
   const raw = JSON.stringify({
-    text_to_summarize: textToSummarize.value,
+    inputs: textToSummarize.value,
   });
 
   const requestOptions = {
@@ -44,11 +44,17 @@ const submitData = () => {
 
   // SEND THE TEXT TO THE SERVER USING FETCH API
   fetch(summarize, requestOptions)
-    .then((response) => response.text())
+    .then((response) => response.json())
     .then((summary) => {
       // UPDATE THE OUTPUT TEXT AREA WITH THE NEW SUMMARY
+      console.log('[dadadada]', summary.data);
+
+      if (summary.data === undefined) {
+        summarizedTextArea.value.value = "Error: Unable to summarize the text";
+      }
+
       if (summarizedTextArea.value) {
-        summarizedTextArea.value.value = summary;
+        summarizedTextArea.value.value = summary.data;
       }
 
       // REMOVE LOADING ANIMATION
