@@ -96,7 +96,7 @@ watch(textToSummarize, verifySummarizeTextLength);
           name="summarized_text"
           style="outline: none;"
           readonly
-          placeholder="Summarized text will appear here"
+          :placeholder="$t('home.textAreaSummarized')"
         ></textarea>
       </div>
     </div>

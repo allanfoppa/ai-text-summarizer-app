@@ -14,7 +14,7 @@ const emit = defineEmits(['update:modelValue']);
     :value="modelValue"
     @input="$emit('update:modelValue', $event.target.value)"
     name="text_to_summarize"
-    placeholder="Paste in some text to summarize. (Min length is 200 chars. Max length is 100,000 chars.)"
+    :placeholder="$t('home.textAreaSummarize')"
     maxlength="5000"
   ></textarea>
 </template>
