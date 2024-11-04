@@ -1,6 +1,25 @@
 import { createI18n } from "vue-i18n";
 
-const messages = {
+interface Messages {
+  [key: string]: {
+    nav: {
+      home: string;
+      about: string;
+    };
+    home: {
+      header: string;
+      welcome: string;
+      info: string;
+      textAreaSummarize: string;
+      textAreaSummarized: string;
+    };
+    about: {
+      header: string;
+    };
+  };
+}
+
+const messages: Messages = {
   pt: {
     nav: {
       home: "Início",

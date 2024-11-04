@@ -12,7 +12,7 @@ const emit = defineEmits(['update:modelValue']);
 <template>
   <textarea
     :value="modelValue"
-    @input="$emit('update:modelValue', $event.target.value)"
+    @input="$emit('update:modelValue', ($event.target as HTMLTextAreaElement).value)"
     name="text_to_summarize"
     :placeholder="$t('home.textAreaSummarize')"
     maxlength="5000"

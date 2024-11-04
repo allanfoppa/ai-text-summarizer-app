@@ -1,9 +1,7 @@
 <script setup lang="ts">
-import { RouterLink, RouterView, useRoute, useRouter } from 'vue-router';
+import { RouterLink, useRoute, useRouter } from 'vue-router';
 import { useI18n } from 'vue-i18n';
 import { watch } from 'vue';
-
-import ViewTitle from '@/components/ViewTitle.vue';
 
 const route = useRoute();
 const router = useRouter();

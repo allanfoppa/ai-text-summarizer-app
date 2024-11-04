@@ -8,17 +8,19 @@ import InfoText from "@/components/InfoText.vue";
 import SummarizeTextArea from "@/components/SummarizeTextArea.vue";
 
 // DEFINE REFS FOR THE DATA
-const textToSummarize = ref('');
-const submitButton = ref(null);
-const summarizedTextArea = ref(null);
+const textToSummarize = ref<string>('');
+const submitButton = ref<HTMLButtonElement | null>();
+const summarizedTextArea = ref<HTMLTextAreaElement | null>(null);
 
 const verifySummarizeTextLength = () => {
   // ENABLE OR DISABLE THE BUTTON BASED ON TEXTAREA VALUE
-  let isTextBetweenRange = textToSummarize.value.length >= 200 && textToSummarize.value.length <= 100000
-  if (isTextBetweenRange) {
-    submitButton.value.disabled = false;
-  } else {
-    submitButton.value.disabled = true;
+  let isTextBetweenRange: Boolean =
+    textToSummarize.value.length >= 200 && textToSummarize.value.length <= 100000
+
+  if (submitButton.value) {
+    isTextBetweenRange
+      ? submitButton.value.disabled = false
+      : submitButton.value.disabled = true
   }
 };
 
@@ -26,7 +28,9 @@ const submitData = () => {
   if (!textToSummarize.value) return;
 
   // ADD LOADING ANIMATION
-  submitButton.value.classList.add("submit-button--loading");
+  if (submitButton.value) {
+    submitButton.value.classList.add("submit-button--loading");
+  }
 
   const myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
@@ -39,7 +43,7 @@ const submitData = () => {
     method: "POST",
     headers: myHeaders,
     body: raw,
-    redirect: "follow",
+    redirect: "follow" as RequestRedirect,
   };
 
   // SEND THE TEXT TO THE SERVER USING FETCH API
@@ -47,10 +51,10 @@ const submitData = () => {
     .then((response) => response.json())
     .then((summary) => {
       // UPDATE THE OUTPUT TEXT AREA WITH THE NEW SUMMARY
-      console.log('[dadadada]', summary.data);
-
       if (summary.data === undefined) {
-        summarizedTextArea.value.value = "Error: Unable to summarize the text";
+        if (summarizedTextArea.value) {
+          summarizedTextArea.value.value = "Error: Unable to summarize the text";
+        }
       }
 
       if (summarizedTextArea.value) {
@@ -58,7 +62,9 @@ const submitData = () => {
       }
 
       // REMOVE LOADING ANIMATION
-      submitButton.value.classList.remove("submit-button--loading");
+      if (submitButton.value) {
+        submitButton.value.classList.remove("submit-button--loading");
+      }
     })
     .catch((error) => {
       console.log(error.message);

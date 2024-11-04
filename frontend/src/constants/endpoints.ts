@@ -1,4 +1,4 @@
 
-const BASE_URL = import.meta.env.VITE__API_URL
+const BASE_URL: string = import.meta.env.VITE__API_URL
 
-export const summarize = `${BASE_URL}/summarize`
+export const summarize: string = `${BASE_URL}/summarize`
