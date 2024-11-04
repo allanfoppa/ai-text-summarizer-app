@@ -6,10 +6,21 @@ This project demonstrates how to build a full-stack web application using Postma
 
 ## TECHNOLOGIES USED
 
-Frontend: HTML, CSS, JavaScript
-Backend: Node.js
-API: A text summarization API (e.g., Hugging Face's Transformers API)
-Postman: For API integration, testing, and development workflow
+- FRONTEND:
+
+![JavaScript](https://img.shields.io/badge/javascript-black?style=for-the-badge&logo=javascript)
+![HTML](https://img.shields.io/badge/HTML-black?style=for-the-badge&logo=html5)
+![CSS](https://img.shields.io/badge/CSS-black?&style=for-the-badge&logo=css3)
+![Vue](https://img.shields.io/badge/Vue.js-black?style=for-the-badge&logo=vue.js&logoColor=4FC08D)
+
+- BACKEND:
+
+![Node.js](https://img.shields.io/badge/Node.js-black?style=for-the-badge&logo=node.js)
+
+- EXTERNAL API:
+
+  - A text summarization API (e.g., Hugging Face's Transformers API)
+  - Postman: For API integration, testing, and development workflow
 
 ## GETTING STARTED
 
