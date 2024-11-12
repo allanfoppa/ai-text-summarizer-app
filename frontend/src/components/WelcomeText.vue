@@ -1,3 +1,3 @@
 <template>
-  <p> {{ $t("home.welcome") }} </p>
+  <p data-testid="welcome-text"> {{ $t("home.welcome") }} </p>
 </template>

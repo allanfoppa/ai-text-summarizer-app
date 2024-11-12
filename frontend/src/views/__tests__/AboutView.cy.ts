@@ -1,5 +1,5 @@
 import { mount } from '@cypress/vue';
-import ViewTitle from '../ViewTitle.vue';
+import AboutView from '../AboutView.vue';
 import { createI18n } from 'vue-i18n';
 import { messages } from '../../i18n/index';
 
@@ -10,28 +10,28 @@ const i18n = createI18n({
   messages,
 });
 
-describe('ViewTitle', () => {
+describe('AboutView', () => {
 
   beforeEach(() => {
-    mount(ViewTitle, {
+    mount(AboutView, {
       global: {
         plugins: [i18n],
       },
     });
 
-    cy.get('h1').as('viewTitle');
+    cy.get('.about').as('aboutText');
   })
 
   it('renders the translated text properly in Portuguese', () => {
     // ASSERT
-    cy.get('@viewTitle').should('contain.text', messages.pt.home.header);
+    cy.get('@aboutText').should('contain.text', messages.pt.about.header);
   });
 
   it('renders the translated text properly in English', () => {
     // ARRANGE
     i18n.global.locale = 'en';
     // ASSERT
-    cy.get('@viewTitle').should('contain.text', messages.en.home.header);
+    cy.get('@aboutText').should('contain.text', messages.en.about.header);
   });
 
 });

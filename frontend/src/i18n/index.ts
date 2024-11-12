@@ -19,7 +19,7 @@ interface Messages {
   };
 }
 
-const messages: Messages = {
+export const messages: Messages = {
   pt: {
     nav: {
       home: "Início",
@@ -33,7 +33,7 @@ const messages: Messages = {
       textAreaSummarized: "Seu texto resumido aparecera aqui",
     },
     about: {
-      header: "Sobre nós"
+      header: "Essa e a página sobre"
     }
   },
   en: {
@@ -49,7 +49,7 @@ const messages: Messages = {
       textAreaSummarized: "Your summarized text will appear here",
     },
     about: {
-      header: "About us"
+      header: "This is an about page"
     }
   }
 }

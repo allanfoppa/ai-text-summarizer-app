@@ -1,19 +1,7 @@
 import { mount } from '@cypress/vue';
 import InfoText from '@/components/InfoText.vue';
 import { createI18n } from 'vue-i18n';
-
-const messages = {
-  en: {
-    home: {
-      info: 'Simply paste your text into the text area below and click the "Submit" button.',
-    },
-  },
-  pt: {
-    home: {
-      info: 'Simplesmente cole seu texto na área de texto abaixo e clique no botão "Enviar".',
-    },
-  },
-};
+import { messages } from '@/i18n/index';
 
 const i18n = createI18n({
   locale: 'pt',

@@ -2,22 +2,7 @@ import { mount } from '@cypress/vue';
 import { createI18n } from 'vue-i18n';
 import { createRouter, createMemoryHistory } from 'vue-router';
 import NavigationBar from '../NavigationBar.vue';
-
-// Mock translations for i18n
-const messages = {
-  en: {
-    nav: {
-      home: 'Home',
-      about: 'About',
-    },
-  },
-  pt: {
-    nav: {
-      home: 'Início',
-      about: 'Sobre',
-    },
-  },
-};
+import { messages } from '../../i18n/index';
 
 // Create i18n instance
 const i18n = createI18n({

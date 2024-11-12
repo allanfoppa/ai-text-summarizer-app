@@ -1,3 +1,3 @@
 <template>
-  <p> {{ $t("home.info") }} </p>
+  <p data-testid="info-text"> {{ $t("home.info") }} </p>
 </template>

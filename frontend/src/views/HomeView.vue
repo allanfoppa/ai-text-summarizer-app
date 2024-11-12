@@ -51,20 +51,24 @@ const submitData = () => {
     .then((response) => response.json())
     .then((summary) => {
       // UPDATE THE OUTPUT TEXT AREA WITH THE NEW SUMMARY
-      if (summary.data === undefined) {
+      if (summary.data === undefined || summary.metadata.statusCode !== 201) {
         if (summarizedTextArea.value) {
           summarizedTextArea.value.value = "Error: Unable to summarize the text";
+          if (submitButton.value) {
+            submitButton.value.classList.remove("submit-button--loading");
+          }
+          return;
         }
       }
 
       if (summarizedTextArea.value) {
         summarizedTextArea.value.value = summary.data;
+        if (submitButton.value) {
+          submitButton.value.classList.remove("submit-button--loading");
+        }
+        return;
       }
 
-      // REMOVE LOADING ANIMATION
-      if (submitButton.value) {
-        submitButton.value.classList.remove("submit-button--loading");
-      }
     })
     .catch((error) => {
       console.log(error.message);
@@ -91,7 +95,12 @@ watch(textToSummarize, verifySummarizeTextLength);
         <SummarizeTextArea v-model="textToSummarize" />
 
         <!-- TODO: Make a component -->
-        <button ref="submitButton" class="submit-button" @click="submitData">
+        <button
+          ref="submitButton"
+          class="submit-button"
+          @click="submitData"
+          data-testid="submit-button"
+        >
           <span class="submit-button-text">Summarize</span>
         </button>
       </div>
@@ -103,6 +112,7 @@ watch(textToSummarize, verifySummarizeTextLength);
           style="outline: none;"
           readonly
           :placeholder="$t('home.textAreaSummarized')"
+          data-testid="summarized-text-area"
         ></textarea>
       </div>
     </div>

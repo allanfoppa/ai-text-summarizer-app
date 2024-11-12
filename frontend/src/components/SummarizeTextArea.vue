@@ -11,6 +11,7 @@ const emit = defineEmits(['update:modelValue']);
 
 <template>
   <textarea
+    data-testid="text-area-summarize"
     :value="modelValue"
     @input="$emit('update:modelValue', ($event.target as HTMLTextAreaElement).value)"
     name="text_to_summarize"
