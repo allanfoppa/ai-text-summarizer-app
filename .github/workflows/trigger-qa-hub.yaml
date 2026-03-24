@@ -1,0 +1,27 @@
+name: Trigger QA Hub
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  notify-hub:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        project: [backend, frontend]
+    steps:
+      - name: Dispatch Event to QA Hub
+        env:
+          GH_TOKEN: ${{ secrets.QA_HUB_PAT }}
+        run: |
+          curl -L -X POST \
+          -H "Authorization: token $GH_TOKEN" \
+          -H "Accept: application/vnd.github.v3+json" \
+          https://api.github.com/repos/allanfoppa/ai-qa-testing-hub/dispatches \
+          -d '{
+            "event_type": "run-qa-suite",
+            "client_payload": {
+              "project_id": "ai-text-summarizer-${{ matrix.project }}"
+            }
+          }'
