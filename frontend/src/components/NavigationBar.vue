@@ -1,32 +1,44 @@
 <script setup lang="ts">
-import { RouterLink, useRoute, useRouter } from 'vue-router';
-import { useI18n } from 'vue-i18n';
-import { watch } from 'vue';
+import { RouterLink, useRoute, useRouter } from 'vue-router'
+import { useI18n } from 'vue-i18n'
+import { watch } from 'vue'
 
-const route = useRoute();
-const router = useRouter();
+const route = useRoute()
+const router = useRouter()
 
-const { locale } = useI18n();
+const { locale } = useI18n()
 
 watch(
   () => route.params.lang,
-  (newLang) => {
-    if (newLang && locale.value !== newLang) {
-      locale.value = newLang;
+  newLang => {
+    const langString = Array.isArray(newLang) ? newLang[0] : newLang
+
+    if (langString && locale.value !== langString) {
+      locale.value = langString
     }
   },
-  { immediate: true }
-);
+  { immediate: true },
+)
 
-const goTo = (path) => {
-  router.push({ path: `/${locale.value}${path}` });
-};
+const goTo = (path: string) => {
+  router.push({ path: `/${locale.value}${path}` })
+}
 </script>
 
 <template>
   <nav class="nav">
-    <RouterLink class="nav__link" :to="{ path: `/${$route.params.lang || 'pt'}/home` }"> {{ $t("nav.home") }} </RouterLink>
-    <RouterLink class="nav__link" :to="{ path: `/${$route.params.lang || 'pt'}/about` }"> {{ $t("nav.about") }} </RouterLink>
+    <RouterLink
+      class="nav__link"
+      :to="{ path: `/${$route.params.lang || 'pt'}/home` }"
+    >
+      {{ $t('nav.home') }}
+    </RouterLink>
+    <RouterLink
+      class="nav__link"
+      :to="{ path: `/${$route.params.lang || 'pt'}/about` }"
+    >
+      {{ $t('nav.about') }}
+    </RouterLink>
   </nav>
 </template>
 
