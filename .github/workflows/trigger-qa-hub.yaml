@@ -20,7 +20,7 @@ jobs:
           -H "Accept: application/vnd.github.v3+json" \
           https://api.github.com/repos/allanfoppa/ai-qa-testing-hub/dispatches \
           -d '{
-            "event_type": "run-qa-suite",
+            "event_type": "run-jest-suite",
             "client_payload": {
               "project_id": "ai-text-summarizer-${{ matrix.project }}"
             }
