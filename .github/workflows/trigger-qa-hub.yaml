@@ -24,6 +24,10 @@ jobs:
             "event_type": "run-ai-text-summarizer-app-${{ matrix.project }}-tests",
             "client_payload": {
               "repo": "${{ github.repository }}",
-              "workspace_name": "@hub/ai-text-summarizer-app-${{ matrix.project }}"
+              "workspace_name": "@hub/ai-text-summarizer-app-${{ matrix.project }}",
+              "rootPath": "${{ matrix.project }}",
+              "build": "npm run build",
+              "start": "${{ matrix.project == 'frontend' && 'vite preview --port 4173' || 'npm run start:prod' }}",
+              "port": ${{ matrix.project == 'frontend' && 4173 || 4000 }}
             }
           }'
