@@ -21,5 +21,8 @@ jobs:
           -H "Accept: application/vnd.github.v3+json" \
           https://api.github.com/repos/allanfoppa/ai-qa-testing-hub/dispatches \
           -d '{
-            "event_type": "run-ai-text-summarizer-app-${{ matrix.project }}-tests"
+            "event_type": "run-ai-text-summarizer-app-${{ matrix.project }}-tests",
+            "client_payload": {
+              "repo": "${{ github.repository }}"
+            }
           }'

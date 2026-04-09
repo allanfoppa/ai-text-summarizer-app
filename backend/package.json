@@ -22,7 +22,8 @@
   "qa": {
     "build": "npm run build",
     "start": "npm run start:prod",
-    "port": 4000
+    "port": 4000,
+    "rootPath": "/backend"
   },
   "dependencies": {
     "@nestjs/axios": "^3.0.3",
