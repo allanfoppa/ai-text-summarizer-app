@@ -20,7 +20,7 @@
     "build": "npm run build",
     "start": "vite preview --port 4173",
     "port": 4173,
-    "rootPath": "/frontend"
+    "rootPath": "frontend"
   },
   "dependencies": {
     "@vue/test-utils": "^2.4.6",
