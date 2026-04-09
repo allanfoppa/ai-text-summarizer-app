@@ -24,6 +24,6 @@ jobs:
             "event_type": "run-ai-text-summarizer-app-${{ matrix.project }}-tests",
             "client_payload": {
               "repo": "${{ github.repository }}",
-              "workspace_name": "@hub/ai-text-summarizer-app-${{ matrix.project }}",
+              "workspace_name": "@hub/ai-text-summarizer-app-${{ matrix.project }}"
             }
           }'
