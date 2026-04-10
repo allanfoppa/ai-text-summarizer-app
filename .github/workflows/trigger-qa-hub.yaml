@@ -46,9 +46,6 @@ jobs:
                   \"name\": \"ai-text-${PROJECT}\",
                   \"root\": \"${PROJECT}\"
                 },
-                \"runtime\": {
-                  \"package_manager\": \"pnpm\"
-                },
                 \"commands\": {
                   \"build\": \"build\",
                   \"start\": \"start:prod\"
