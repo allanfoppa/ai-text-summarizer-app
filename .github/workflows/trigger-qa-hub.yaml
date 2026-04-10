@@ -21,10 +21,8 @@ jobs:
           PROJECT="${{ matrix.project }}"
 
           if [ "$PROJECT" = "frontend" ]; then
-            START_CMD="start:prod"
             PORT=4173
           else
-            START_CMD="start:dev"
             PORT=4000
           fi
 
@@ -52,9 +50,8 @@ jobs:
                   \"package_manager\": \"pnpm\"
                 },
                 \"commands\": {
-                  \"install\": \"pnpm install\",
-                  \"build\": \"pnpm run build\",
-                  \"start\": \"$START_CMD\"
+                  \"build\": \"build\",
+                  \"start\": \"start:prod\"
                 },
                 \"server\": {
                   \"port\": $PORT,
