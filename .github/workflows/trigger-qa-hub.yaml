@@ -23,11 +23,27 @@ jobs:
           -d '{
             "event_type": "run-ai-text-summarizer-app-${{ matrix.project }}-tests",
             "client_payload": {
+              "qaContract": "v1",
               "repo": "${{ github.repository }}",
               "workspace_name": "@hub/ai-text-summarizer-app-${{ matrix.project }}",
-              "root_path": "${{ matrix.project }}",
-              "build": "npm run build",
-              "start": "${{ matrix.project == 'frontend' && 'npm exec vite preview --port 4173' || 'npm run start:prod' }}",
-              "port": ${{ matrix.project == 'frontend' && 4173 || 4000 }}
+              "app": {
+                "name": "ai-text-${{ matrix.project }}",
+                "root": "${{ matrix.project }}"
+              },
+              "runtime": {
+                "package_manager": "pnpm"
+              },
+              "commands": {
+                "install": "pnpm install",
+                "build": "pnpm run build",
+                "start": "${{ matrix.project == 'frontend' && 'pnpm exec vite preview --port 4173' || 'pnpm run start:dev' }}",
+              },
+              "server": {
+                "port": ${{ matrix.project == 'frontend' && 4173 || 4000 }},
+                "healthcheck": "http://localhost:${{ matrix.project == 'frontend' && 4173 || 4000 }}"
+              },
+              "timeouts": {
+                "startup": 60
+              }
             }
           }'
