@@ -30,6 +30,7 @@ jobs:
 
           EVENT_TYPE="run-ai-text-summarizer-app-${PROJECT}-tests"
           REPO="${{ github.repository_owner }}/${{ github.event.repository.name }}"
+          echo "Repository name: $REPO"
 
           echo "🚀 Dispatching $EVENT_TYPE"
 
