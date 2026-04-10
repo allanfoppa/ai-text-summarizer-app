@@ -41,14 +41,8 @@ jobs:
               \"client_payload\": {
                 \"qaContract\": \"v1\",
                 \"repo\": \"$REPO\",
-                \"workspace_name\": \"@hub/ai-text-summarizer-app-${PROJECT}\",
                 \"app\": {
-                  \"name\": \"ai-text-${PROJECT}\",
                   \"root\": \"${PROJECT}\"
-                },
-                \"commands\": {
-                  \"build\": \"build\",
-                  \"start\": \"start:prod\"
                 },
                 \"server\": {
                   \"port\": $PORT,
