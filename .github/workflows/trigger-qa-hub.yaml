@@ -16,34 +16,47 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.QA_HUB_PAT }}
         run: |
-          curl -L -X POST \
-          -H "Authorization: token $GH_TOKEN" \
-          -H "Accept: application/vnd.github.v3+json" \
-          https://api.github.com/repos/allanfoppa/ai-qa-testing-hub/dispatches \
-          -d '{
-            "event_type": "run-ai-text-summarizer-app-${{ matrix.project }}-tests",
-            "client_payload": {
-              "qaContract": "v1",
-              "repo": "${{ github.repository }}",
-              "workspace_name": "@hub/ai-text-summarizer-app-${{ matrix.project }}"
-              "app": {
-                "name": "ai-text-${{ matrix.project }}",
-                "root": "${{ matrix.project }}"
-              },
-              "runtime": {
-                "package_manager": "pnpm"
-              },
-              "commands": {
-                "install": "pnpm install",
-                "build": "pnpm run build",
-                "start": "${{ matrix.project == 'frontend' && 'pnpm exec vite preview --port 4173' || 'pnpm run start:dev' }}"
-              },
-              "server": {
-                "port": ${{ matrix.project == 'frontend' && 4173 || 4000 }},
-                "healthcheck": "http://localhost:${{ matrix.project == 'frontend' && 4173 || 4000 }}"
-              },
-              "timeouts": {
-                "startup": 60
+          set -euo pipefail
+
+          PROJECT="${{ matrix.project }}"
+
+          if [ "$PROJECT" = "frontend" ]; then
+            START_CMD="pnpm exec vite preview --port 4173"
+            PORT=4173
+          else
+            START_CMD="pnpm run start:dev"
+            PORT=4000
+          fi
+
+          EVENT_TYPE="run-ai-text-summarizer-app-${PROJECT}-tests"
+
+          echo "🚀 Dispatching $EVENT_TYPE"
+
+          curl -i -L -X POST \
+            -H "Authorization: token $GH_TOKEN" \
+            -H "Accept: application/vnd.github.v3+json" \
+            https://api.github.com/repos/allanfoppa/ai-qa-testing-hub/dispatches \
+            -d "{
+              \"event_type\": \"$EVENT_TYPE\",
+              \"client_payload\": {
+                \"qaContract\": \"v1\",
+                \"repo\": \"${{ github.repository }}\",
+                \"workspace_name\": \"@hub/ai-text-summarizer-app-${PROJECT}\",
+                \"app\": {
+                  \"name\": \"ai-text-${PROJECT}\",
+                  \"root\": \"${PROJECT}\"
+                },
+                \"runtime\": {
+                  \"package_manager\": \"pnpm\"
+                },
+                \"commands\": {
+                  \"install\": \"pnpm install\",
+                  \"build\": \"pnpm run build\",
+                  \"start\": \"$START_CMD\"
+                },
+                \"server\": {
+                  \"port\": $PORT,
+                  \"healthcheck\": \"http://localhost:$PORT\"
+                }
               }
-            }
-          }'
+            }"
