@@ -21,7 +21,7 @@ jobs:
           PROJECT="${{ matrix.project }}"
 
           if [ "$PROJECT" = "frontend" ]; then
-            START_CMD="pnpm exec vite preview --port 4173"
+            START_CMD="npx serve -s dist -l 4173"
             PORT=4173
           else
             START_CMD="pnpm run start:dev"
