@@ -27,7 +27,7 @@ jobs:
               "workspace_name": "@hub/ai-text-summarizer-app-${{ matrix.project }}",
               "root_path": "${{ matrix.project }}",
               "build": "npm run build",
-              "start": "${{ matrix.project == 'frontend' && 'vite preview --port 4173' || 'npm run start:prod' }}",
+              "start": "${{ matrix.project == 'frontend' && 'npm exec vite preview --port 4173' || 'npm run start:prod' }}",
               "port": ${{ matrix.project == 'frontend' && 4173 || 4000 }}
             }
           }'
