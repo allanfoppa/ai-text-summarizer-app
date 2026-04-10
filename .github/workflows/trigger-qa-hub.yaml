@@ -29,6 +29,7 @@ jobs:
           fi
 
           EVENT_TYPE="run-ai-text-summarizer-app-${PROJECT}-tests"
+          REPO="${{ github.repository_owner }}/${{ github.event.repository.name }}"
 
           echo "🚀 Dispatching $EVENT_TYPE"
 
@@ -40,7 +41,7 @@ jobs:
               \"event_type\": \"$EVENT_TYPE\",
               \"client_payload\": {
                 \"qaContract\": \"v1\",
-                \"repo\": \"${{ github.repository }}\",
+                \"repo\": \"$REPO\",
                 \"workspace_name\": \"@hub/ai-text-summarizer-app-${PROJECT}\",
                 \"app\": {
                   \"name\": \"ai-text-${PROJECT}\",
