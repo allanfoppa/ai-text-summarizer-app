@@ -18,7 +18,6 @@ This project demonstrates how to build a full-stack web application using Postma
 ![Node.js](https://img.shields.io/badge/Node.js-black?style=for-the-badge&logo=node.js)
 
 - EXTERNAL API:
-
   - A text summarization API (e.g., Hugging Face's Transformers API)
   - Postman: For API integration, testing, and development workflow
 
@@ -32,28 +31,34 @@ Ensure you have Node.js and npm (or yarn) installed.
 
 1. Install dependencies.
 
-  ```shell
-  npm install
-  ```
+```shell
+npm install
+```
 
 2. Run dev enviroment.
 
-  ```shell
-  npm run start:dev
-  ```
+```shell
+npm run start:dev
+```
 
 #### FRONTEND
 
 1. Install dependencies.
 
-  ```shell
-  npm install
-  ```
+```shell
+npm install
+```
 
 2. Run dev enviroment.
 
-  ```shell
-  npm run dev
-  ```
+```shell
+npm run dev
+```
 
 For more detailed instructions and code examples, refer to the official Postman Academy tutorial: <https://academy.postman.com/project-ai-text-summarizer>
+
+## FINAL CONSIDERATIONS
+
+This application is a personal project developed for educational purposes to explore new technologies and architectural concepts. Please note that it is not intended for commercial use and might not follow all production-grade best practices.
+
+Feedback and contributions are more than welcome! Feel free to explore the code, open an issue, or reach out if you have any suggestions. Thank you for checking it out!
